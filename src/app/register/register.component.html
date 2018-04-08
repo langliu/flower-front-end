@@ -1,0 +1,94 @@
+<div nz-row [nzGutter]="8" [nzType]="'flex'" [nzAlign]="'middle'">
+  <div nz-col [nzSpan]="8" [nzOffset]="8">
+    <nz-card>
+      <ng-template #title>注册</ng-template>
+      <ng-template #body>
+        <form nz-form [formGroup]="validateForm" (ngSubmit)="_submitForm()">
+          <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+              <label for="email" nz-form-item-required>邮箱</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+              <nz-input [nzSize]="'large'" formControlName="email" [nzId]="'email'"></nz-input>
+              <div nz-form-explain *ngIf="getFormControl('email').dirty&&getFormControl('email').hasError('email')">请输入正确的邮箱！</div>
+            </div>
+          </div>
+          <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+              <label for="password" nz-form-item-required>密码</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+              <nz-input [nzSize]="'large'" formControlName="password" [nzType]="'password'" [nzId]="'password'" (ngModelChange)="updateConfirmValidator()"></nz-input>
+              <div nz-form-explain *ngIf="getFormControl('password').dirty&&getFormControl('password').hasError('required')">请输入您的密码！</div>
+            </div>
+          </div>
+          <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+              <label for="checkPassword" nz-form-item-required>确认密码</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+              <nz-input [nzSize]="'large'" formControlName="checkPassword" [nzType]="'password'" [nzId]="'checkPassword'"></nz-input>
+              <div nz-form-explain *ngIf="getFormControl('checkPassword').dirty&&getFormControl('checkPassword').hasError('required')">请确认您的密码！</div>
+              <div nz-form-explain *ngIf="getFormControl('checkPassword').dirty&&getFormControl('checkPassword').hasError('confirm')">Two passwords that you enter is inconsistent!</div>
+            </div>
+          </div>
+          <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+              <label for="userName" nz-form-item-required>
+                <span>
+                  昵称
+                </span>
+              </label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+              <nz-input [nzSize]="'large'" formControlName="userName" [nzId]="'userName'"></nz-input>
+              <div nz-form-explain *ngIf="getFormControl('userName').dirty&&getFormControl('userName').hasError('required')">请输入您的昵称！</div>
+            </div>
+          </div>
+          <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+              <label for="phoneNumber" nz-form-item-required>手机号码</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback [nzValidateStatus]="validateForm.controls['phoneNumber']">
+              <nz-input-group [nzSize]="'large'" nzCompact>
+                <input formControlName="phoneNumber" id="'phoneNumber'" nz-input>
+              </nz-input-group>
+              <div nz-form-explain *ngIf="getFormControl('phoneNumber').dirty&&getFormControl('phoneNumber').hasError('required')">请输入您的手机号码！</div>
+            </div>
+          </div>
+          <!-- <div nz-form-item nz-row>
+            <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+              <label for="captcha" nz-form-item-required>Captcha</label>
+            </div>
+            <div nz-form-control nz-col [nzSm]="14" [nzXs]="24">
+              <div nz-row [nzGutter]="8">
+                <div nz-col [nzSpan]="12">
+                  <nz-input [nzSize]="'large'" formControlName="captcha" [nzId]="'captcha'"></nz-input>
+                </div>
+                <div nz-col [nzSpan]="12">
+                  <button nz-button [nzSize]="'large'" (click)="getCaptcha($event)">Get captcha</button>
+                </div>
+              </div>
+              <div nz-form-extra>We must make sure that your are a human.</div>
+              <div nz-form-explain *ngIf="getFormControl('captcha').dirty&&getFormControl('captcha').hasError('required')">Please input the captcha you got!</div>
+            </div>
+          </div> -->
+          <div nz-form-item nz-row style="margin-bottom:8px;">
+            <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="6">
+              <label nz-checkbox formControlName="agree">
+                <span>我已阅读
+                  <a>用户协议</a>
+                </span>
+              </label>
+            </div>
+          </div>
+          <div nz-form-item nz-row style="margin-bottom:8px;">
+            <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="6">
+              <button nz-button class="register-form-button" [nzSize]="'large'" [nzType]="'primary'">注册</button>
+            </div>
+          </div>
+        </form>
+      </ng-template>
+    </nz-card>
+  </div>
+</div>
