@@ -1,10 +1,26 @@
+/* Document scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
 :host ::ng-deep .ant-layout-content {
   background: #f4f7ed;
   min-height: 90vh;
   margin-top: 2vh;
 }
 
-:host ::ng-deep .ant-layout-header, :host ::ng-deep .ant-layout-footer {
+:host ::ng-deep .ant-layout-header,
+:host ::ng-deep .ant-layout-footer {
   color: #afb1ab;
 }
 
@@ -31,27 +47,41 @@
   background-color: #fafafa;
   border: 1px solid #dbdfd6;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  display: flex;
+  display: -webkit-box;
   flex-wrap: nowrap;
-  height: 100%;
   overflow-x: scroll;
   width: 90vw;
   margin: 0 auto 2vh;
-  min-height: 88vh;
+  max-height: 88vh;
 }
 
 .list {
   background-color: #ffffff;
-  width: 25vw;
-  margin: 1vh 1vw 0;
+  border: 1px solid #dbdfd6;
+  border-radius: 5px;
+  height: 100%;
+  width: 20vw;
+  min-width: 200px;
+  max-width: 300px;
+  margin: 4vh 1vw;
   .list-title {
-    border-top: 4px solid darkgreen;
+    background-color: #fcfcfc;
+    border-bottom: 1px solid #ddd;
+    border-radius: 5px 5px 0 0;
+    border-top: 5px solid #9bce37;
+    color: #999;
     display: flex;
+    font-size: 16px;
+    font-weight: 700;
+    height: 40px;
     justify-content: space-between;
-    height: 30px;
-    line-height: 30px;
+    line-height: 35px;
+    padding: 0 10px;
     div {
       display: flex;
+      p {
+        margin-left: 5px;
+      }
     }
   }
   .list-card {

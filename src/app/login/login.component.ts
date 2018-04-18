@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 import {LogInRegisterService} from '../log-in-register.service';
 
 @Component({
@@ -17,10 +18,15 @@ export class LoginComponent implements OnInit {
     console.log(this.validateForm.value);
     const submitData = this.validateForm.value;
     delete submitData.remember;
-    this.logInRegister.login(submitData).subscribe(response => console.log(response));
+    this.logInRegister.login(submitData).subscribe(response => {
+      if (response.status === 'success') {
+        console.log('router');
+        this.router.navigate(['/']);
+      }
+    });
   }
 
-  constructor(private fb: FormBuilder, private logInRegister: LogInRegisterService) {
+  constructor(private fb: FormBuilder, private logInRegister: LogInRegisterService, private router: Router) {
   }
 
   ngOnInit() {
