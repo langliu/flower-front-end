@@ -1,6 +1,8 @@
-export interface ResopnseData {
+export interface ResponseData {
   status: string;
-  reason: string;
+  reason?: string;
+  token?: string;
+  userName?: string;
 }
 
 export interface User {

@@ -1,15 +1,27 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {ProjectListComponent} from './project-list/project-list.component';
+import {MembersComponent} from './members/members.component';
+import {ProjectsComponent} from './projects/projects.component';
 
 const routes: Routes = [
   {
-    path: 'projects/project',
-    component: ProjectListComponent,
+    path: 'projects',
+    component: ProjectsComponent,
+    children: [
+      {
+        path: 'members',
+        component: MembersComponent
+      },
+      {
+        path: 'project',
+        component: ProjectListComponent
+      }
+    ]
   },
   {
     path: '',
-    component: ProjectListComponent,
+    component: ProjectsComponent,
   },
 ];
 

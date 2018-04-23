@@ -20,8 +20,9 @@ export class LoginComponent implements OnInit {
     delete submitData.remember;
     this.logInRegister.login(submitData).subscribe(response => {
       if (response.status === 'success') {
-        console.log('router');
-        this.router.navigate(['/']);
+        sessionStorage.setItem('token', response.token);
+        sessionStorage.setItem('userName', response.userName);
+        this.router.navigate(['/projects/project']);
       }
     });
   }
