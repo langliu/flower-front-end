@@ -1,0 +1,10 @@
+<div class="header">
+  <ul class="navigation-bar">
+    <li *ngFor="let nav of navItems"
+        (click)="goToPage(nav.url,nav.name)"
+        [class.active]="activeNavItem===nav.name">
+      {{nav.name}}
+    </li>
+  </ul>
+  <nz-avatar nzIcon="user" style="background-color: #87d068;"></nz-avatar>
+</div>
