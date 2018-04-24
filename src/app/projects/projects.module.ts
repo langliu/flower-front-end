@@ -10,6 +10,7 @@ import {ProjectCardComponent} from './project-card/project-card.component';
 import {MembersComponent} from './members/members.component';
 import {ProjectsComponent} from './projects/projects.component';
 import {ProjectsHeaderComponent} from './projects-header/projects-header.component';
+import { CalendarsComponent } from './calendars/calendars.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import {ProjectsHeaderComponent} from './projects-header/projects-header.compone
     ProjectCardComponent,
     MembersComponent,
     ProjectsComponent,
-    ProjectsHeaderComponent
+    ProjectsHeaderComponent,
+    CalendarsComponent
   ],
   providers: [ProjectsService]
 })

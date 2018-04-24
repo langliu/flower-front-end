@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {LogInRegisterService} from '../log-in-register.service';
+import {LogInRegisterService} from '../../log-in-register.service';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 
 @Component({

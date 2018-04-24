@@ -8,8 +8,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {ProjectsModule} from './projects/projects.module';
 
 import {AppComponent} from './app.component';
-import {LoginComponent} from './login/login.component';
-import {RegisterComponent} from './register/register.component';
+import {LoginComponent} from './login-register/login/login.component';
+import {RegisterComponent} from './login-register/register/register.component';
 
 import {LogInRegisterService} from './log-in-register.service';
 
