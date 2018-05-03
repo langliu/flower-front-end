@@ -1,20 +1,24 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {ProjectsRoutingModule} from './projects-routing.module';
 
 import {ProjectsService} from './service/projects.service';
+import {AuthGuard} from './service/auth-guard.service';
 
 import {ProjectListComponent} from './project-list/project-list.component';
 import {ProjectCardComponent} from './project-card/project-card.component';
 import {MembersComponent} from './members/members.component';
 import {ProjectsComponent} from './projects/projects.component';
 import {ProjectsHeaderComponent} from './projects-header/projects-header.component';
-import { CalendarsComponent } from './calendars/calendars.component';
+import {CalendarsComponent} from './calendars/calendars.component';
+import {ProjectCollectionComponent} from './project-collection/project-collection.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     NgZorroAntdModule,
     ProjectsRoutingModule,
   ],
@@ -24,9 +28,10 @@ import { CalendarsComponent } from './calendars/calendars.component';
     MembersComponent,
     ProjectsComponent,
     ProjectsHeaderComponent,
-    CalendarsComponent
+    CalendarsComponent,
+    ProjectCollectionComponent
   ],
-  providers: [ProjectsService]
+  providers: [ProjectsService, AuthGuard]
 })
 export class ProjectsModule {
 }

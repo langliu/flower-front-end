@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ProjectsService} from '../service/projects.service';
 
 @Component({
   selector: 'app-project-list',
@@ -12,10 +13,17 @@ export class ProjectListComponent implements OnInit {
   public listName = '进行中';
   public userName = sessionStorage.getItem('userName');
 
-  constructor(private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private projectService: ProjectsService) {
   }
 
   ngOnInit() {
+    if (this.route.snapshot.paramMap.has('id')) {
+      this.projectService
+        .getProjectDetail(this.route.snapshot.paramMap.get('id'))
+        .subscribe(response => {
+          console.log(response);
+        });
+    }
   }
 
   /**

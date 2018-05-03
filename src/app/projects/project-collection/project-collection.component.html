@@ -1,0 +1,22 @@
+<article>
+  <div>
+    <div class="project-collection-header">
+      <p class="all-projects">全部项目</p>
+      <div class="add-projects" (click)="showModal()"><i class="anticon anticon-plus-circle-o"></i>新增项目</div>
+    </div>
+    <nz-modal [nzVisible]="isVisible" [nzTitle]="'新增项目'" [nzContent]="modalContent"
+              (nzOnCancel)="handleCancel($event)" (nzOnOk)="handleOk($event)" [nzConfirmLoading]="isConfirmLoading">
+      <ng-template #modalContent>
+        <nz-input [(ngModel)]="project_name" [nzPlaceHolder]="'请输入项目名称'"></nz-input>
+      </ng-template>
+    </nz-modal>
+    <div nz-row [nzGutter]="32">
+      <div nz-col [nzSpan]="6" *ngFor="let project of projects?.project_list; index as i" class="project">
+        <div (click)="goToDetail(project.id)">
+          <img [src]="animalIcon[i]" alt="">
+          <p> {{project.project_name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

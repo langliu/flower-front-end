@@ -1,0 +1,70 @@
+:host ::ng-deep .ant-row {
+  margin: 0 16px !important;
+}
+
+article {
+  width: 80vw;
+}
+
+.project-collection-header {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 30px;
+  p {
+    pointer-events: none;
+    font-size: 14px;
+    max-width: 100px;
+    min-width: 20px;
+    padding: 0 12px;
+    line-height: 36px;
+    border-radius: 40px;
+  }
+  .all-projects {
+    color: #fff;
+    background-color: #aed4d1;
+  }
+  .add-projects {
+    color: #5bc4c7;
+    font-size: 14px;
+    user-select: none;
+    i {
+      margin-right: 5px;
+    }
+  }
+}
+
+.project {
+  align-items: center;
+  display: flex;
+  height: 150px;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  &:hover {
+    background: #f9f9f9;
+    border: 1px solid #e8e8e8;
+  }
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  p {
+    display: block;
+    font-size: 17px;
+    color: #333333;
+    line-height: 20px;
+    text-align: center;
+    margin: 10px 5px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  img {
+    width: 40%;
+  }
+}
