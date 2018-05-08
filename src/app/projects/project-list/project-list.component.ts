@@ -37,9 +37,9 @@ export class ProjectListComponent implements OnInit {
 
   /**
    * 页面跳转
-   * @param {string} url 跳转路径
+   * @param {string} id 跳转路径
    */
-  goToPage(url) {
-    this.router.navigate([url]);
+  goToPage(id) {
+    this.router.navigate(['projects/todo', id]);
   }
 }

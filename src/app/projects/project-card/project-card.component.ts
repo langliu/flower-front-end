@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {ProjectsService} from '../service/projects.service';
 
 @Component({
   selector: 'app-project-card',
@@ -10,14 +11,22 @@ export class ProjectCardComponent implements OnInit {
   @Input() time: string;
   @Input() listName: string;
   @Input() _checked: boolean;
+  @Input() cardId: string;
 
-  constructor() {
+  constructor(private projectsService: ProjectsService) {
   }
 
   ngOnInit() {
   }
 
-  _console($event) {
-
+  console(cardId: string): void {
+    // 阻止事件冒泡
+    event.stopPropagation();
+    console.log(cardId);
+    this.projectsService
+      .itemAccomplished(cardId)
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 }

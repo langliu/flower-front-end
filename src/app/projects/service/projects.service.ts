@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Users} from '../model/Users';
 import {NewProject, Project, ProjectDetail} from '../model/Projects';
+import {httpUrl} from '../../http-url';
 
 @Injectable()
 export class ProjectsService {
@@ -15,7 +16,7 @@ export class ProjectsService {
    * @returns {Observable<Users>}
    */
   getUsers(): Observable<Users> {
-    return this.http.get<Users>('http://127.0.0.1:5000/getUsers', {
+    return this.http.get<Users>(httpUrl.getUsers, {
       headers: new HttpHeaders({
         token: sessionStorage.getItem('token'),
         username: sessionStorage.getItem('userName')
@@ -28,7 +29,7 @@ export class ProjectsService {
    * @returns {Observable<Project>}
    */
   getProjects(): Observable<Project> {
-    return this.http.get<Project>('http://127.0.0.1:5000/getProjects', {
+    return this.http.get<Project>(httpUrl.getProjects, {
       headers: new HttpHeaders({
         token: sessionStorage.getItem('token'),
         username: sessionStorage.getItem('userName')
@@ -42,7 +43,7 @@ export class ProjectsService {
    * @returns {Observable<ProjectDetail>}
    */
   getProjectDetail(id): Observable<ProjectDetail> {
-    return this.http.get<ProjectDetail>(`http://127.0.0.1:5000/getProjectDetail?id=${id}`, {
+    return this.http.get<ProjectDetail>(`${httpUrl.getProjectDetail}?id=${id}`, {
       headers: new HttpHeaders({
         token: sessionStorage.getItem('token'),
         username: sessionStorage.getItem('userName')
@@ -56,11 +57,26 @@ export class ProjectsService {
    * @returns {Observable<NewProject>}
    */
   addNewProject(data): Observable<NewProject> {
-    return this.http.post<NewProject>(`http://127.0.0.1:5000/addProject`, data, {
+    return this.http.post<NewProject>(httpUrl.addProject, data, {
       headers: new HttpHeaders({
         token: sessionStorage.getItem('token'),
         username: sessionStorage.getItem('userName')
       })
     });
+  }
+
+  /**
+   * 改变项目任务的状态
+   * @param {string} id 任务id
+   * @returns {Observable<any>}
+   */
+  itemAccomplished(id: string): Observable<any> {
+    return this.http.get(`${httpUrl.itemAccomplished}?id=${id}`, {
+        headers: new HttpHeaders({
+          token: sessionStorage.getItem('token'),
+          username: sessionStorage.getItem('userName')
+        })
+      }
+    );
   }
 }

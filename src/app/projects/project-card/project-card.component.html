@@ -1,7 +1,6 @@
 <div class="card" draggable="true">
   <p class="description">
-    <label nz-checkbox [(ngModel)]="_checked" (ngModelChange)="_console($event)">
-      <span>Checkbox</span>
+    <label nz-checkbox [(ngModel)]="_checked" (ngModelChange)="console(cardId)">
     </label>
     {{title}}
   </p>

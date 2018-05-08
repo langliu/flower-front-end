@@ -13,6 +13,8 @@
     </div>
     <div class="list-card" *ngFor="let item of project.list_items">
       <app-project-card
+        (click)="goToPage(item._id)"
+        [cardId]="item._id"
         [title]="item.title"
         [time]="item.deadline"
         [listName]="item.member"
