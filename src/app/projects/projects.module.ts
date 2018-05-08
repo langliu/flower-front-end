@@ -14,6 +14,7 @@ import {ProjectsComponent} from './projects/projects.component';
 import {ProjectsHeaderComponent} from './projects-header/projects-header.component';
 import {CalendarsComponent} from './calendars/calendars.component';
 import {ProjectCollectionComponent} from './project-collection/project-collection.component';
+import { ProjectCardDetailComponent } from './project-card-detail/project-card-detail.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {ProjectCollectionComponent} from './project-collection/project-collectio
     ProjectsComponent,
     ProjectsHeaderComponent,
     CalendarsComponent,
-    ProjectCollectionComponent
+    ProjectCollectionComponent,
+    ProjectCardDetailComponent
   ],
   providers: [ProjectsService, AuthGuard]
 })

@@ -1,5 +1,10 @@
 <div class="card" draggable="true">
-  <p class="description">{{title}}</p>
+  <p class="description">
+    <label nz-checkbox [(ngModel)]="_checked" (ngModelChange)="_console($event)">
+      <span>Checkbox</span>
+    </label>
+    {{title}}
+  </p>
   <div class="card-footer">
     <p><i class="anticon anticon-clock-circle-o"></i>{{time}}</p>
     <p>{{listName}}</p>

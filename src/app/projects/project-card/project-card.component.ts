@@ -9,6 +9,7 @@ export class ProjectCardComponent implements OnInit {
   @Input() title: string;
   @Input() time: string;
   @Input() listName: string;
+  @Input() _checked: boolean;
 
   constructor() {
   }
@@ -16,4 +17,7 @@ export class ProjectCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  _console($event) {
+
+  }
 }
