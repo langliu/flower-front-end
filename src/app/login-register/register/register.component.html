@@ -46,30 +46,30 @@
           </div>
           <div nz-form-item nz-row>
             <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-              <label for="userName" nz-form-item-required>
+              <label for="username" nz-form-item-required>
                 <span>
                   昵称
                 </span>
               </label>
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
-              <nz-input [nzSize]="'large'" formControlName="userName" [nzId]="'userName'"></nz-input>
+              <nz-input [nzSize]="'large'" formControlName="username" [nzId]="'username'"></nz-input>
               <div nz-form-explain
-                   *ngIf="getFormControl('userName').dirty&&getFormControl('userName').hasError('required')">请输入您的昵称！
+                   *ngIf="getFormControl('username').dirty&&getFormControl('username').hasError('required')">请输入您的昵称！
               </div>
             </div>
           </div>
           <div nz-form-item nz-row>
             <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-              <label for="phoneNumber" nz-form-item-required>手机号码</label>
+              <label for="phone_number" nz-form-item-required>手机号码</label>
             </div>
             <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
-                 [nzValidateStatus]="validateForm.controls['phoneNumber']">
+                 [nzValidateStatus]="validateForm.controls['phone_number']">
               <nz-input-group [nzSize]="'large'" nzCompact>
-                <input formControlName="phoneNumber" id="'phoneNumber'" nz-input>
+                <input formControlName="phone_number" id="'phone_number'" nz-input>
               </nz-input-group>
               <div nz-form-explain
-                   *ngIf="getFormControl('phoneNumber').dirty&&getFormControl('phoneNumber').hasError('required')">
+                   *ngIf="getFormControl('phone_number').dirty&&getFormControl('phone_number').hasError('required')">
                 请输入您的手机号码！
               </div>
             </div>

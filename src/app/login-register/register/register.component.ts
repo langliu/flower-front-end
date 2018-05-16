@@ -11,21 +11,21 @@ import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 })
 export class RegisterComponent implements OnInit {
   validateForm: FormGroup;
-  isVisible = true;
+  isVisible = false;
   confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return {required: true};
     } else if (control.value !== this.validateForm.controls['password'].value) {
       return {confirm: true, error: true};
     }
-  };
+  }
   agreeValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return {required: true};
     } else if (control.value !== true) {
       return {confirm: true, error: true};
     }
-  };
+  }
 
   _submitForm() {
     for (const i of Object.keys(this.validateForm.controls)) {
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       this.logInRegisterService
         .register(this.validateForm.value)
         .subscribe(response => {
-          if (response.status === 'fail') {
+          if (response.success) {
             this._message.error(response.reason);
           } else {
             this.isVisible = true;
@@ -64,8 +64,8 @@ export class RegisterComponent implements OnInit {
       email: [null, [Validators.email]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      userName: [null, [Validators.required]],
-      phoneNumber: [null, [Validators.required]],
+      username: [null, [Validators.required]],
+      phone_number: [null, [Validators.required]],
       agree: [false, [Validators.required, this.agreeValidator]],
     });
   }

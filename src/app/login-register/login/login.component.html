@@ -6,12 +6,12 @@
         <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="_submitForm()">
           <div nz-form-item>
             <div nz-form-control>
-              <nz-input formControlName="userName" [nzPlaceHolder]="'用户名'" [nzSize]="'large'">
+              <nz-input formControlName="email" [nzPlaceHolder]="'邮箱'" [nzSize]="'large'">
                 <ng-template #prefix>
                   <i class="anticon anticon-user"></i>
                 </ng-template>
               </nz-input>
-              <div nz-form-explain *ngIf="validateForm.controls.userName.dirty&&validateForm.controls.userName.hasError('required')">请输入用户名！</div>
+              <div nz-form-explain *ngIf="validateForm.controls.email.dirty&&validateForm.controls.email.hasError('required')">请输入用户名！</div>
             </div>
           </div>
           <div nz-form-item>

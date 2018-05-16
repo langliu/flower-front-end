@@ -4,8 +4,37 @@
     </label>
     {{title}}
   </p>
-  <div class="card-footer">
-    <p><i class="anticon anticon-clock-circle-o"></i>{{time}}</p>
-    <p>{{listName}}</p>
-  </div>
+  <nz-popover [nzTrigger]="'click'" [nzPlacement]="'right'" (click)="showPopover()">
+    <div class="card-footer"
+         [ngClass]="{'assigned':item.username && item.deadline,'delay':item.deadline&&(item.deadline<currentTime)}"
+         nz-popover>
+      <p *ngIf="item.username" style="margin-right: 5px;">{{item.username}}</p>
+      <p *ngIf="item.deadline">
+        {{item.deadline | date:'yyyy-MM-dd'}}
+      </p>
+      <p *ngIf="item.username==null && item.deadline===null">未指派</p>
+    </div>
+    <ng-template #nzTemplate>
+      <div>
+        <p class="title">将任务指派给</p>
+        <nz-input-group [nzSize]="'small'">
+          <nz-select style="width: 100%;"
+                     [(ngModel)]="item.username" [nzPlaceHolder]="'请输入成员姓名'" nzShowSearch>
+            <nz-option *ngFor="let user of users?.user_list"
+                       [nzLabel]="user.username"
+                       [nzValue]="user.username">
+            </nz-option>
+          </nz-select>
+        </nz-input-group>
+      </div>
+      <div>
+        <p class="title"> 任务截至时间</p>
+        <nz-input-group [nzSize]="'small'">
+          <nz-datepicker [(ngModel)]="item.deadline"
+                         (ngModelChange)="dateChange()">
+          </nz-datepicker>
+        </nz-input-group>
+      </div>
+    </ng-template>
+  </nz-popover>
 </div>

@@ -1,15 +1,15 @@
 export interface Users {
-  users?: User[];
+  user_list?: User[];
   teamMembers?: number;
-  teamName?: string;
+  team_name?: string;
   success: boolean;
   reason?: string;
 }
 
 export interface User {
   email: string;
-  password: string;
-  checkPassword: string;
-  userName: string;
-  phoneNumber: string;
+  username: string;
+  phone_number: string;
+  permission: string;
+  user_id: number;
 }

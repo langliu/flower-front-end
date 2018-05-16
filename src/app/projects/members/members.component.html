@@ -1,13 +1,13 @@
 <div class="members">
   <div class="members-header">
-    <h1>{{members?.teamName}}</h1>
+    <h1>{{members?.team_name}}</h1>
     <p>（共 {{members?.teamMembers}} 人）</p>
   </div>
   <div class="members-list">
-    <div class="members-list_user" *ngFor="let user of members?.users">
+    <div class="members-list_user" *ngFor="let user of members?.user_list">
       <div class="user">
         <nz-avatar nzSize="large" nzIcon="user"></nz-avatar>
-        <p class="user-name">{{user.userName}}</p>
+        <p class="user-name">{{user.username}}<span class="role">{{user.permission | dataFilter}}</span></p>
       </div>
       <p class="user-email">{{user.email}}</p>
     </div>

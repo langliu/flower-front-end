@@ -1,19 +1,22 @@
-const baseUrl = 'http://127.0.0.1:5000';
+const baseUrl = 'http://127.0.0.1:8000';
 const httpUrl = {
   // 登录
-  login: `/login`,
+  login: `/user/login`,
   // 注册
-  register: `/register`,
+  register: `/user/register`,
   // 获取团队用户
-  getUsers: `/getUsers`,
+  getUsers: `/user/get_team_users`,
   // 获取团队项目
-  getProjects: `/getProjects`,
+  getProjects: `/project/get_projects_by_team`,
   // 获取项目详情
-  getProjectDetail: '/getProjectDetail',
+  getProjectDetail: '/project/get_project_list_by_project',
   // 添加新的项目
-  addProject: '/addProject',
+  addProject: '/project/create_project',
   // 完成项目任务
-  itemAccomplished: '/item_accomplished'
+  itemAccomplished: '/project/complete_task',
+  // 获取任务详情
+  getProjectItem: '/getProjectItem',
+  createNewCard: '/project/create_list_item',
 };
 
 Object.keys(httpUrl).forEach((value) => {

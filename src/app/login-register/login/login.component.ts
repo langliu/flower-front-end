@@ -19,9 +19,13 @@ export class LoginComponent implements OnInit {
     const submitData = this.validateForm.value;
     delete submitData.remember;
     this.logInRegister.login(submitData).subscribe(response => {
-      if (response.status === 'success') {
-        sessionStorage.setItem('token', response.token);
-        sessionStorage.setItem('userName', response.userName);
+      if (response.success) {
+        sessionStorage.setItem('token', response.user.token);
+        sessionStorage.setItem('username', response.user.username);
+        sessionStorage.setItem('email', response.user.email);
+        if (response.user.active_team) {
+          sessionStorage.setItem('active_team', response.user.active_team.toString());
+        }
         this.router.navigate(['/projects/project']);
       }
     });
@@ -32,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
+      email: [null, [Validators.required]],
       password: [null, [Validators.required]],
       remember: [true],
     });

@@ -1,3 +1,10 @@
-<p>
-  project-card-detail works!
-</p>
+<div nz-row>
+  <div nz-col>
+    {{cardData?.title}}
+  </div>
+  <div nz-col>
+    <p *ngFor="let item of cardData?.items">
+      {{item}}
+    </p>
+  </div>
+</div>

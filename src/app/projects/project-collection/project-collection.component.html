@@ -11,8 +11,8 @@
       </ng-template>
     </nz-modal>
     <div nz-row [nzGutter]="32">
-      <div nz-col [nzSpan]="6" *ngFor="let project of projects?.project_list; index as i" class="project">
-        <div (click)="goToDetail(project.id)">
+      <div nz-col [nzSpan]="6" *ngFor="let project of projects?.projects; index as i" class="project">
+        <div (click)="goToDetail(project.project_id)">
           <img [src]="animalIcon[i]" alt="">
           <p> {{project.project_name}}</p>
         </div>

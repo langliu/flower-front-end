@@ -14,7 +14,8 @@ import {ProjectsComponent} from './projects/projects.component';
 import {ProjectsHeaderComponent} from './projects-header/projects-header.component';
 import {CalendarsComponent} from './calendars/calendars.component';
 import {ProjectCollectionComponent} from './project-collection/project-collection.component';
-import { ProjectCardDetailComponent } from './project-card-detail/project-card-detail.component';
+import {ProjectCardDetailComponent} from './project-card-detail/project-card-detail.component';
+import {DataFilterPipe} from '../pipe/data-filter.pipe';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { ProjectCardDetailComponent } from './project-card-detail/project-card-d
     ProjectsHeaderComponent,
     CalendarsComponent,
     ProjectCollectionComponent,
-    ProjectCardDetailComponent
+    ProjectCardDetailComponent,
+    DataFilterPipe
   ],
   providers: [ProjectsService, AuthGuard]
 })

@@ -49,7 +49,7 @@ export class ProjectCollectionComponent implements OnInit {
 
   getProjects() {
     this.projectsService
-      .getProjects()
+      .getProjects(Number(sessionStorage.getItem('active_team')))
       .subscribe(response => {
         if (response.success) {
           this.projects = response;
@@ -83,7 +83,7 @@ export class ProjectCollectionComponent implements OnInit {
 
   handleOk() {
     this.projectsService
-      .addNewProject({project_name: this.project_name})
+      .addNewProject({project_name: this.project_name, team_id: Number(sessionStorage.getItem('active_team'))})
       .subscribe(response => {
         console.log(response);
         if (response.success) {

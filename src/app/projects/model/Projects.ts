@@ -1,38 +1,52 @@
 export interface Project {
-  _id: string;
-  team: string;
-  project_name: string;
-  project_list: ProjectListItem[];
+  projects: ProjectItem[];
   success: boolean;
   reason: string;
 }
 
 export interface ProjectItem {
-  _id: string;
-  deadline: Date;
-  items: string[];
-  member: string;
-  status: boolean;
-  title: string;
+  project_id: number;
+  project_name: string;
+  team_id: number;
 }
 
-interface ProjectListItem {
-  id: string;
-  project_name: string;
-}
+// export interface ProjectListItem {
+// //   id: string;
+// //   project_name: string;
+// // }
 
 export interface ProjectDetail {
-  project_name: string;
+  success: boolean;
   project_list: ProjectDetailList[];
+  reason?: string;
 }
 
-interface ProjectDetailList {
+export interface ProjectDetailList {
+  project_list_id: number;
   list_name: string;
-  list_items: ProjectItem[];
+  project_list_item: ProjectListItem[];
 }
 
 export interface NewProject {
-  project_name: string;
   success: boolean;
   reason?: string;
+  project: ProjectItem;
+}
+
+export interface ProjectListItem {
+  list_item_id: number;
+  title: string;
+  status: boolean;
+  deadline: Date;
+  username: string;
+}
+
+export interface NewCard {
+  title: string;
+  project_list_id: number;
+}
+
+export interface NewCardResponse {
+  success: boolean;
+  list_item: NewCard;
 }

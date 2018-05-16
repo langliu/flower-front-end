@@ -1,12 +1,20 @@
 export interface ResponseData {
-  status: string;
+  success: boolean;
   reason?: string;
-  token?: string;
-  userName?: string;
+  user: UserInfo;
+}
+
+export interface UserInfo {
+  email: string;
+  token: string;
+  user_id: number;
+  phone_number: number;
+  username: string;
+  active_team: number;
 }
 
 export interface User {
-  userName: string;
+  email: string;
   password: string;
 }
 

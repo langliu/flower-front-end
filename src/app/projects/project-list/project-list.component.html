@@ -3,7 +3,7 @@
     <div class="list-title">
       <p>{{project.list_name}}</p>
       <div>
-        <p>
+        <p (click)="showModal(project.project_list_id)">
           <i class="anticon anticon-plus"></i>任务
         </p>
         <p>
@@ -11,15 +11,28 @@
         </p>
       </div>
     </div>
-    <div class="list-card" *ngFor="let item of project.list_items">
+    <div class="list-card" *ngFor="let item of project.project_list_item">
       <app-project-card
-        (click)="goToPage(item._id)"
-        [cardId]="item._id"
+        (click)="goToPage(item.list_item_id)"
+        [cardId]="item.list_item_id"
         [title]="item.title"
         [time]="item.deadline"
-        [listName]="item.member"
+        [listName]="item.username"
         [_checked]="item.status">
       </app-project-card>
     </div>
   </div>
+  <div class="add-list">
+    <p><i class="anticon anticon-plus"></i>添加新的清单</p>
+  </div>
+  <nz-modal [(nzVisible)]="isVisible"
+            nzTitle="新建任务"
+            [nzContent]="modalContent"
+            (nzOnCancel)="handleCancel()"
+            (nzOnOk)="handleOk()"
+            [nzConfirmLoading]="isOkLoading">
+    <ng-template #modalContent>
+      <nz-input [(ngModel)]="postData.title" [nzPlaceHolder]="'任务描述'"></nz-input>
+    </ng-template>
+  </nz-modal>
 </div>
