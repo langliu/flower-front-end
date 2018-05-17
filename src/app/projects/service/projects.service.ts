@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Users} from '../model/Users';
-import {NewCard, NewCardResponse, NewProject, Project, ProjectDetail, ProjectItem} from '../model/Projects';
+import {NewCard, NewCardResponse, NewProject, Project, ProjectDetail, ProjectItem, ProjectListItem} from '../model/Projects';
 import {httpUrl} from '../../http-url';
 
 @Injectable()
@@ -14,6 +14,19 @@ export class ProjectsService {
   };
 
   constructor(private http: HttpClient) {
+  }
+
+  /**
+   * 处理post请求提交的数据
+   * @param {Object} data 表单数据
+   * @returns {string} 处理结果
+   */
+  handlePostData(data: Object) {
+    const postData = new URLSearchParams();
+    for (const [k, v] of Object.entries(data)) {
+      postData.append(k, v);
+    }
+    return postData.toString();
   }
 
   /**
@@ -60,11 +73,8 @@ export class ProjectsService {
    * @returns {Observable<NewProject>}
    */
   addNewProject(data: Object): Observable<NewProject> {
-    const postData = new URLSearchParams();
-    for (const [k, v] of Object.entries(data)) {
-      postData.append(k, v);
-    }
-    return this.http.post<NewProject>(httpUrl.addProject, postData.toString(), this.httpOptions);
+    const postData = this.handlePostData(data);
+    return this.http.post<NewProject>(httpUrl.addProject, postData, this.httpOptions);
   }
 
   /**
@@ -101,10 +111,18 @@ export class ProjectsService {
    * @returns {Observable<any>}
    */
   createNewCard(data: NewCard): Observable<any> {
-    const postData = new URLSearchParams();
-    for (const [k, v] of Object.entries(data)) {
-      postData.append(k, v);
-    }
-    return this.http.post<NewCardResponse>(httpUrl.createNewCard, postData.toString(), this.httpOptions);
+    const postData = this.handlePostData(data);
+    return this.http.post<NewCardResponse>(httpUrl.createNewCard, postData, this.httpOptions);
+  }
+
+  /**
+   * 升级Card信息
+   * @param {ProjectListItem} data 升级数据
+   * @returns {Observable<any>}
+   */
+  updateCard(data: ProjectListItem): Observable<any> {
+    console.log('update');
+    const postData = this.handlePostData(data);
+    return this.http.post(httpUrl.updateItem, postData, this.httpOptions);
   }
 }

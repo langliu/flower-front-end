@@ -3,6 +3,7 @@ import {ProjectsService} from '../service/projects.service';
 import {ProjectListItem} from '../model/Projects';
 import {Users} from '../model/Users';
 import {NzModalService} from 'ng-zorro-antd';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-project-card',
@@ -11,19 +12,33 @@ import {NzModalService} from 'ng-zorro-antd';
 })
 export class ProjectCardComponent implements OnInit {
   @Input() title: string;
-  @Input() time: string;
-  @Input() listName: string;
+  @Input() time: string | null;
+  @Input() username: string | null;
   @Input() _checked: boolean;
   @Input() cardId: number;
-  public item: ProjectListItem = {deadline: null};
+
+  public deadline: string | null;
+  public item: ProjectListItem;
   public users: Users;
-  public currentTime = new Date();
+  public currentTime: string;
 
   constructor(private projectsService: ProjectsService, private confirmService: NzModalService) {
   }
 
   ngOnInit() {
-    this.getUsers();
+    this.item = {
+      list_item_id: this.cardId,
+      title: this.title,
+      status: this._checked,
+      deadline: this.time,
+      username: this.username
+    };
+    if (this.time) {
+      this.deadline = this.time;
+    } else {
+      this.deadline = null;
+    }
+    this.currentTime = this.formatDate(new Date());
   }
 
   getUsers(): void {
@@ -60,10 +75,27 @@ export class ProjectCardComponent implements OnInit {
 
   showPopover(): void {
     event.stopPropagation();
+    this.getUsers();
   }
 
   dateChange(): void {
-    console.log(event);
+    // 格式化时间
+    this.item.deadline = this.formatDate(new Date(this.deadline));
     console.log(this.item);
+    this.projectsService.updateCard(this.item)
+      .subscribe(response => {
+        console.log(response);
+      });
+  }
+
+  /**
+   * 格式化日期
+   * @param {Date} date 时间
+   * @returns {string} ‘YYYY-MM-DD’
+   */
+  formatDate(date: Date): string {
+    return `${date.getFullYear()}-` +
+      `${String(date.getMonth() + 1).padStart(2, '0')}-` +
+      `${String(date.getDate()).padStart(2, '0')}`;
   }
 }

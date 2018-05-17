@@ -34,11 +34,12 @@ export interface NewProject {
 }
 
 export interface ProjectListItem {
-  list_item_id: number;
-  title: string;
-  status: boolean;
-  deadline: Date;
-  username: string;
+  list_item_id?: number;
+  title?: string;
+  status?: boolean;
+  deadline?: string | null;
+  username?: string | null;
+  user_id?: number | null;
 }
 
 export interface NewCard {
