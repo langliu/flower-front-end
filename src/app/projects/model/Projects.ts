@@ -10,11 +10,6 @@ export interface ProjectItem {
   team_id: number;
 }
 
-// export interface ProjectListItem {
-// //   id: string;
-// //   project_name: string;
-// // }
-
 export interface ProjectDetail {
   success: boolean;
   project_list: ProjectDetailList[];
@@ -40,6 +35,7 @@ export interface ProjectListItem {
   deadline?: string | null;
   username?: string | null;
   user_id?: number | null;
+  description?: string;
 }
 
 export interface NewCard {

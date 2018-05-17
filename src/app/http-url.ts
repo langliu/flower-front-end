@@ -14,10 +14,14 @@ const httpUrl = {
   addProject: '/project/create_project',
   // 完成项目任务
   itemAccomplished: '/project/complete_task',
+  itemTaskComplete: '/project/complete_task_item',
   // 获取任务详情
-  getProjectItem: '/getProjectItem',
+  getProjectItem: '/project/get_item_detail',
+  // 新建任务
   createNewCard: '/project/create_list_item',
+  // 修改任务详情
   updateItem: '/project/update_item',
+  // 新建任务列表
   createProjectList: '/project/create_project_list'
 };
 

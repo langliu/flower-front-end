@@ -1,10 +1,22 @@
-<div nz-row>
-  <div nz-col>
-    {{cardData?.title}}
+<div nz-row style="width: 80vw; text-align: left;">
+  <div nz-col [nzSpan]="20" [nzOffset]="'2'">
+    <div nz-row class="mes">
+      <label nz-checkbox [(ngModel)]="cardData?.item.status" (ngModelChange)="completeTask(cardData?.item.list_item_id)"
+             class="message">
+        <span class="title">{{cardData?.item.title}}</span> （{{cardData?.item.username}} {{cardData?.item.deadline |date
+        :'yyyy-MM-dd'}}）
+      </label>
+    </div>
   </div>
-  <div nz-col>
-    <p *ngFor="let item of cardData?.items">
-      {{item}}
+  <div nz-col [nzSpan]="20" [nzPush]="2">
+    <!--<nz-input [(ngModel)]="cardData?.item.description" [nzType]="'textarea'" [nzRows]="'4'"-->
+              <!--[nzDisabled]="textareaDisable" style="margin-bottom: 10px;"></nz-input>-->
+    <p class="description">{{cardData?.item.description}}</p>
+    <nz-progress *ngIf="cardData?.progress" [ngModel]="cardData?.progress"></nz-progress>
+    <p *ngFor="let item of cardData?.tasks">
+      <label nz-checkbox [(ngModel)]="item.status" class="task" (ngModelChange)="taskComplete(item.item_detail_id)">
+        <span [ngClass]="{'completed':item.status}">{{item.value}}</span>
+      </label>
     </p>
   </div>
 </div>

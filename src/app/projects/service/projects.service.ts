@@ -5,6 +5,7 @@ import {Users} from '../model/Users';
 import {NewCard, NewCardResponse, NewProject, Project, ProjectDetail, ProjectItem, ProjectListItem} from '../model/Projects';
 import {httpUrl} from '../../http-url';
 import {NewListPostData, NewListResponse} from '../model/NewList';
+import {TaskDetail} from '../model/TaskDetail';
 
 @Injectable()
 export class ProjectsService {
@@ -97,11 +98,10 @@ export class ProjectsService {
    * @param {string} id 任务id
    * @returns {Observable<ProjectItem>}
    */
-  getCardDetail(id: string): Observable<ProjectItem> {
-    return this.http.get<ProjectItem>(`${httpUrl.getProjectItem}?id=${id}`, {
+  getCardDetail(id: string): Observable<TaskDetail> {
+    return this.http.get<TaskDetail>(`${httpUrl.getProjectItem}?list_item_id=${id}`, {
       headers: new HttpHeaders({
-        token: sessionStorage.getItem('token'),
-        username: sessionStorage.getItem('userName')
+        token: sessionStorage.getItem('token')
       })
     });
   }
@@ -135,5 +135,14 @@ export class ProjectsService {
     console.log('update');
     const postData = this.handlePostData(data);
     return this.http.post(httpUrl.updateItem, postData, this.httpOptions);
+  }
+
+  /**
+   * 完成任务检查项
+   * @param {number} id 检查项id
+   * @returns {Observable<{success: boolean}>}
+   */
+  taskComplete(id: number): Observable<{ success: boolean; progress: number; }> {
+    return this.http.get<{ success: boolean; progress: number; }>(`${httpUrl.itemTaskComplete}?item_detail_id=${id}`);
   }
 }
