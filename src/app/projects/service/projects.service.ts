@@ -6,6 +6,7 @@ import {NewCard, NewCardResponse, NewProject, Project, ProjectDetail, ProjectIte
 import {httpUrl} from '../../http-url';
 import {NewListPostData, NewListResponse} from '../model/NewList';
 import {TaskDetail} from '../model/TaskDetail';
+import {TaskPostData, TaskResponse} from '../model/Task';
 
 @Injectable()
 export class ProjectsService {
@@ -124,6 +125,16 @@ export class ProjectsService {
   createNewList(data: NewListPostData): Observable<NewListResponse> {
     const postData = this.handlePostData(data);
     return this.http.post<NewListResponse>(httpUrl.createProjectList, postData, this.httpOptions);
+  }
+
+  /**
+   * 新建任务检查项
+   * @param {TaskPostData} data
+   * @returns {Observable<TaskResponse>}
+   */
+  createTask(data: TaskPostData): Observable<TaskResponse> {
+    const postData = this.handlePostData(data);
+    return this.http.post<TaskResponse>(httpUrl.addTask, postData, this.httpOptions);
   }
 
   /**

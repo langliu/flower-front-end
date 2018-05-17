@@ -3,20 +3,52 @@
     <div nz-row class="mes">
       <label nz-checkbox [(ngModel)]="cardData?.item.status" (ngModelChange)="completeTask(cardData?.item.list_item_id)"
              class="message">
-        <span class="title">{{cardData?.item.title}}</span> （{{cardData?.item.username}} {{cardData?.item.deadline |date
-        :'yyyy-MM-dd'}}）
+        <span class="title">{{cardData?.item.title}}</span>
+        <span *ngIf="cardData?.item.username && cardData?.item.deadline">（{{cardData?.item.username}} {{cardData?.item.deadline |date :'yyyy-MM-dd'}}）</span>
       </label>
+    </div>
+    <div class="add" *ngIf="cardData?.item.description===null&& cardData?.tasks.length===0">
+      添加 <span (click)="showAddDescription()">任务描述</span>
+      或者 <span (click)="showTaskItem=true">检查项</span>
+    </div>
+    <div class="add" *ngIf="cardData?.item.description==null&& cardData?.tasks.length!==0">
+      添加 <span (click)="showAddDescription()">任务描述</span>
+      <!--或者 <span (click)="showTaskItem=true">检查项</span>-->
+    </div>
+    <div class="add" *ngIf="cardData?.item.description!=null&& cardData?.tasks.length===0">
+      添加
+      <!--<span (click)="showAddDescription()">任务描述</span>-->
+      <!--或者 -->
+      <span (click)="showTaskItem=true">检查项</span>
     </div>
   </div>
   <div nz-col [nzSpan]="20" [nzPush]="2">
-    <!--<nz-input [(ngModel)]="cardData?.item.description" [nzType]="'textarea'" [nzRows]="'4'"-->
-              <!--[nzDisabled]="textareaDisable" style="margin-bottom: 10px;"></nz-input>-->
-    <p class="description">{{cardData?.item.description}}</p>
+    <div *ngIf="textareaDisable">
+      <nz-input [(ngModel)]="cardData?.item.description" [nzType]="'textarea'"
+                [nzRows]="'4'"
+                style="margin-bottom: 10px;"></nz-input>
+      <button nz-button [nzType]="'primary'" style="margin-right: 20px;" (click)="updateCard()">
+        <span>确定</span>
+      </button>
+      <button nz-button [nzType]="'default'" (click)="closeAddDescription()">
+        <span>取消</span>
+      </button>
+    </div>
+    <p class="description" *ngIf="showDescript">{{cardData?.item.description}}</p>
     <nz-progress *ngIf="cardData?.progress" [ngModel]="cardData?.progress"></nz-progress>
     <p *ngFor="let item of cardData?.tasks">
       <label nz-checkbox [(ngModel)]="item.status" class="task" (ngModelChange)="taskComplete(item.item_detail_id)">
         <span [ngClass]="{'completed':item.status}">{{item.value}}</span>
       </label>
+    </p>
+    <p *ngIf="showTaskItem">
+      <nz-input [(ngModel)]="taskData.value" style="margin-bottom: 10px;"></nz-input>
+      <button nz-button [nzType]="'primary'" style="margin-right: 20px;" (click)="addNewTask()">
+        <span>确定</span>
+      </button>
+      <button nz-button [nzType]="'default'" (click)="closeAddTask()">
+        <span>取消</span>
+      </button>
     </p>
   </div>
 </div>

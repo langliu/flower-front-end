@@ -22,7 +22,9 @@ const httpUrl = {
   // 修改任务详情
   updateItem: '/project/update_item',
   // 新建任务列表
-  createProjectList: '/project/create_project_list'
+  createProjectList: '/project/create_project_list',
+  // 新建任务检查项
+  addTask: '/project/create_item_detail'
 };
 
 Object.keys(httpUrl).forEach((value) => {
