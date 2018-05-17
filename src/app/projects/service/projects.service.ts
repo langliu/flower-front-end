@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {Users} from '../model/Users';
 import {NewCard, NewCardResponse, NewProject, Project, ProjectDetail, ProjectItem, ProjectListItem} from '../model/Projects';
 import {httpUrl} from '../../http-url';
+import {NewListPostData, NewListResponse} from '../model/NewList';
 
 @Injectable()
 export class ProjectsService {
@@ -113,6 +114,16 @@ export class ProjectsService {
   createNewCard(data: NewCard): Observable<any> {
     const postData = this.handlePostData(data);
     return this.http.post<NewCardResponse>(httpUrl.createNewCard, postData, this.httpOptions);
+  }
+
+  /**
+   * 新建列表
+   * @param {NewListPostData} data
+   * @returns {Observable<NewListResponse>}
+   */
+  createNewList(data: NewListPostData): Observable<NewListResponse> {
+    const postData = this.handlePostData(data);
+    return this.http.post<NewListResponse>(httpUrl.createProjectList, postData, this.httpOptions);
   }
 
   /**

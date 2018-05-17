@@ -22,7 +22,7 @@
       </app-project-card>
     </div>
   </div>
-  <div class="add-list">
+  <div class="add-list" (click)="addNewListisVisible=true">
     <p><i class="anticon anticon-plus"></i>添加新的清单</p>
   </div>
   <nz-modal [(nzVisible)]="isVisible"
@@ -33,6 +33,16 @@
             [nzConfirmLoading]="isOkLoading">
     <ng-template #modalContent>
       <nz-input [(ngModel)]="postData.title" [nzPlaceHolder]="'任务描述'"></nz-input>
+    </ng-template>
+  </nz-modal>
+  <nz-modal [(nzVisible)]="addNewListisVisible"
+            nzTitle="新建列表"
+            [nzContent]="modalContent2"
+            (nzOnCancel)="handleCancel()"
+            (nzOnOk)="handleNewListOk()"
+            [nzConfirmLoading]="isOkLoading">
+    <ng-template #modalContent2>
+      <nz-input [(ngModel)]="newListData.list_name" [nzPlaceHolder]="'列表名称'"></nz-input>
     </ng-template>
   </nz-modal>
 </div>

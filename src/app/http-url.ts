@@ -17,7 +17,8 @@ const httpUrl = {
   // 获取任务详情
   getProjectItem: '/getProjectItem',
   createNewCard: '/project/create_list_item',
-  updateItem: '/project/update_item'
+  updateItem: '/project/update_item',
+  createProjectList: '/project/create_project_list'
 };
 
 Object.keys(httpUrl).forEach((value) => {

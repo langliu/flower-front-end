@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProjectsService} from '../service/projects.service';
 import {NewCard, ProjectDetail} from '../model/Projects';
+import {NewListPostData} from '../model/NewList';
 
 @Component({
   selector: 'app-project-list',
@@ -9,20 +10,20 @@ import {NewCard, ProjectDetail} from '../model/Projects';
   styleUrls: ['./project-list.component.less']
 })
 export class ProjectListComponent implements OnInit {
-  public title = '完成登录注册，记得今天之前完成哦！！！';
-  public time = '2018-07-11';
-  public listName = '进行中';
   public projectDetail: ProjectDetail;
   public isVisible = false;
   public isOkLoading = false;
+  public addNewListisVisible = false;
   public userName = sessionStorage.getItem('userName');
   public postData: NewCard = {title: '', project_list_id: 0};
+  public newListData: NewListPostData = {project_id: 0, list_name: ''};
 
   constructor(private route: ActivatedRoute, private router: Router, private projectService: ProjectsService) {
   }
 
   ngOnInit() {
     this.getProjectDetail();
+    this.newListData.list_name = '';
   }
 
   /**
@@ -30,6 +31,7 @@ export class ProjectListComponent implements OnInit {
    */
   getProjectDetail(): void {
     if (this.route.snapshot.paramMap.has('id')) {
+      this.newListData.project_id = Number(this.route.snapshot.paramMap.get('id'));
       this.projectService
         .getProjectDetail(this.route.snapshot.paramMap.get('id'))
         .subscribe(response => {
@@ -54,6 +56,7 @@ export class ProjectListComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisible = false;
+    this.addNewListisVisible = false;
   }
 
   handleOk(): void {
@@ -68,10 +71,20 @@ export class ProjectListComponent implements OnInit {
           this.postData.title = '';
         }
       });
-    // window.setTimeout(() => {
-    //   this.isVisible = false;
-    //   this.isOkLoading = false;
-    // }, 3000);
   }
 
+  handleNewListOk(): void {
+    this.isOkLoading = true;
+    console.log(this.newListData);
+    this.projectService
+      .createNewList(this.newListData)
+      .subscribe(response => {
+        if (response.success) {
+          this.handleCancel();
+          this.isOkLoading = false;
+          this.getProjectDetail();
+          this.newListData.list_name = '';
+        }
+      });
+  }
 }
