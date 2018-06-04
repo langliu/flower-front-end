@@ -7,9 +7,10 @@ export interface Users {
 }
 
 export interface User {
-  email: string;
-  username: string;
-  phone_number: string;
-  permission: string;
+  avatar?: string;
+  email?: string;
+  username?: string;
+  phone_number?: string;
+  permission?: string;
   user_id: number;
 }

@@ -3,7 +3,6 @@ import {ProjectsService} from '../service/projects.service';
 import {ProjectListItem} from '../model/Projects';
 import {Users} from '../model/Users';
 import {NzModalService} from 'ng-zorro-antd';
-import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-project-card',

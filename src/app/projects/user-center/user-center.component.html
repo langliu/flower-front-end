@@ -1,0 +1,53 @@
+<div style="width: 80vw;">
+  <div nz-row="true" nzType="flex" class="avatar">
+    <div nz-col="true" [nzSpan]="5">
+      <nz-avatar [nzSize]="large" nzIcon="anticon anticon-user" style="background-color: #87d068;" nzSrc=""></nz-avatar>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col [nzSpan]="24">
+      <div nz-row nzType="flex" nzAlign="center" nzJustify="start" class="list-item">
+        <div nz-col [nzSpan]="2" [nzOffset]="2" style="display: flex;align-items: center;">
+          <p class="input-label">用户名</p>
+        </div>
+        <div nz-col [nzSpan]="5">
+          <input nz-input nzSize="large" placeholder="用户名" [(ngModel)]="user.username">
+        </div>
+      </div>
+      <div nz-row nzType="flex" nzAlign="center" nzJustify="start" class="list-item">
+        <div nz-col [nzSpan]="2" [nzOffset]="2" style="display: flex;align-items: center;">
+          <p class="input-label">邮箱</p>
+        </div>
+        <div nz-col [nzSpan]="10" class="item">
+          <input nz-input nzSize="large" class="disabled-input" placeholder="用户名" disabled [(ngModel)]="email">
+          <p class="change"><span>修改邮箱</span></p>
+        </div>
+      </div>
+      <div nz-row nzType="flex" nzAlign="center" nzJustify="start" class="list-item">
+        <div nz-col [nzSpan]="2" [nzOffset]="2" style="display: flex;align-items: center;">
+          <p class="input-label">手机</p>
+        </div>
+        <div nz-col [nzSpan]="10" class="item">
+          <input nz-input nzSize="large" class="disabled-input" placeholder="用户名" disabled [(ngModel)]="phoneNumber">
+          <p class="change"><span>修改手机号</span></p>
+        </div>
+      </div>
+      <div nz-row nzType="flex" nzAlign="center" nzJustify="start" class="list-item">
+        <div nz-col [nzSpan]="2" [nzOffset]="2" style="display: flex;align-items: center;">
+          <p class="input-label">密码</p>
+        </div>
+        <div nz-col [nzSpan]="5" style="display:flex;align-items: center">
+          <p style="text-align: left;color: #5bc4c7;"><span>修改密码</span></p>
+        </div>
+      </div>
+      <div nz-row nzType="flex" nzAlign="center" nzJustify="start" class="list-item">
+        <div nz-col [nzSpan]="2" [nzOffset]="2" style="display: flex;align-items: center;">
+        </div>
+        <div nz-col [nzSpan]="5" style="display:flex;align-items: center">
+          <button nz-button nzType="primary" nzSize="large" (click)="changeUsername()">保存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

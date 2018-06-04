@@ -19,6 +19,10 @@ export class ProjectsHeaderComponent implements OnInit {
     {
       name: '日历',
       url: '/projects/calendars'
+    },
+    {
+      name: '我的',
+      url: `/projects/myProject/${sessionStorage.getItem('userId')}`
     }
   ];
   public activeNavItem = sessionStorage.getItem('activeNavItem');
@@ -39,6 +43,14 @@ export class ProjectsHeaderComponent implements OnInit {
     this.router.navigate([url]);
     sessionStorage.setItem('activeNavItem', activeName);
     this.activeNavItem = sessionStorage.getItem('activeNavItem');
+  }
+
+  goToUserCenter() {
+    this.router
+      .navigate(['projects/user', sessionStorage.getItem('userId')])
+      .then(res => {
+        console.log(res);
+      });
   }
 
   signOut() {

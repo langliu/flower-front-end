@@ -1,0 +1,49 @@
+<div style="width: 80vw;text-align: left;font-size: 14px">
+  <div nz-row="true" nzType="flex" class="avatar">
+    <div nz-col="true" [nzOffset]="2" [nzSpan]="20" style="display: flex;align-items: center;">
+      <nz-avatar [nzSize]="large" nzIcon="anticon anticon-user" style="background-color: #87d068;" nzSrc=""></nz-avatar>
+      <div style="margin-left: 20px">
+        <p>{{username}}</p>
+        <p>{{email}}</p>
+      </div>
+    </div>
+  </div>
+  <div nz-row class="classification">
+    <div nz-col [nzSpan]="22" [nzOffset]="2" class="title">
+      <p><i class="el-icon-view"></i> 今天</p>
+    </div>
+    <div nz-col [nzSpan]="22" [nzOffset]="2" class="list">
+      <p *ngFor="let task of myTasks?.today">
+        <label nz-checkbox class="item" [(ngModel)]="task.status" (ngModelChange)="completeTask(task.id)">
+          {{task.title}}
+          <span class="tag">{{task.projectName}} - {{task.listName}}</span>
+        </label>
+      </p>
+      <p *ngIf="!myTasks?.today.length">当前没有新任务 </p>
+    </div>
+  </div>
+  <div nz-row class="classification">
+    <div nz-col [nzSpan]="22" [nzOffset]="2" class="title">接下来</div>
+    <div nz-col [nzSpan]="22" [nzOffset]="2" class="list">
+      <p *ngFor="let task of myTasks?.next">
+        <label nz-checkbox class="item" [(ngModel)]="task.status" (ngModelChange)="completeTask(task.id)">
+          {{task.title}}
+          <span class="tag">{{task.projectName}} - {{task.listName}}</span>
+        </label>
+      </p>
+      <p *ngIf="!myTasks?.next.length">已确定的任务请放入这里 </p>
+    </div>
+  </div>
+  <div nz-row class="classification">
+    <div nz-col [nzSpan]="22" [nzOffset]="2" class="title">已完成</div>
+    <div nz-col [nzSpan]="22" [nzOffset]="2" class="list">
+      <p *ngFor="let task of myTasks?.completed">
+        <label nz-checkbox class="item" [(ngModel)]="task.status" (ngModelChange)="completeTask(task.id)">
+          {{task.title}}
+          <span class="tag">{{task.projectName}} - {{task.listName}}</span>
+        </label>
+      </p>
+      <p *ngIf="!myTasks?.completed.length">没有已完成的任务 </p>
+    </div>
+  </div>
+</div>

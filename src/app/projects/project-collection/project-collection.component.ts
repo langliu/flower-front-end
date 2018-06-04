@@ -47,7 +47,7 @@ export class ProjectCollectionComponent implements OnInit {
     this.getProjects();
   }
 
-  getProjects() {
+  getProjects(): void {
     this.projectsService
       .getProjects(Number(sessionStorage.getItem('active_team')))
       .subscribe(response => {
@@ -69,7 +69,11 @@ export class ProjectCollectionComponent implements OnInit {
   }
 
   goToDetail(projectId) {
-    this.router.navigate(['projects/projectDetail', projectId]);
+    this.router
+      .navigate(['projects/projectDetail', projectId])
+      .then(res => {
+        console.log(res);
+      });
   }
 
   showModal() {

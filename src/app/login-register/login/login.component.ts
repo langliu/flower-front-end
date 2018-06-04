@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('token', response.user.token);
         sessionStorage.setItem('username', response.user.username);
         sessionStorage.setItem('email', response.user.email);
+        sessionStorage.setItem('userId', response.user.user_id.toString());
         if (response.user.active_team) {
           sessionStorage.setItem('active_team', response.user.active_team.toString());
         }
@@ -36,8 +37,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.validateForm = this.fb.group({
-      email: [null, [Validators.required]],
-      password: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(16)]],
       remember: [true],
     });
   }

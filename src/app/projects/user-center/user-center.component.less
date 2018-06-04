@@ -1,0 +1,47 @@
+@height: 64px;
+
+:host ::ng-deep .ant-avatar {
+  width: @height;
+  height: @height;
+  line-height: @height;
+  border-radius: 50%;
+}
+
+:host ::ng-deep .ant-avatar.ant-avatar-icon {
+  font-size: @height/2;
+}
+
+.avatar {
+  height: 15vh;
+  align-items: center;
+  border-bottom: 1px solid #e8e2e2;
+}
+
+.list-item {
+  margin: 20px 0;
+  justify-content: start;
+  .item {
+    text-align: left;
+  }
+}
+
+.input-label {
+  font-size: 16px;
+}
+
+.disabled-input {
+  background-color: #efefef;
+  width: 50%;
+  &:hover {
+    border: 1px solid #bdb9b9;
+  }
+}
+
+.change {
+  text-align: left;
+  color: #5bc4c7;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 13px;
+}

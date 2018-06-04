@@ -11,7 +11,8 @@
                   <i class="anticon anticon-user"></i>
                 </ng-template>
               </nz-input>
-              <div nz-form-explain *ngIf="validateForm.controls.email.dirty&&validateForm.controls.email.hasError('required')">请输入用户名！</div>
+              <div nz-form-explain *ngIf="validateForm.controls.email.dirty&&validateForm.controls.email.hasError('required')">请输入邮箱！</div>
+              <div nz-form-explain *ngIf="validateForm.controls.email.dirty&&validateForm.controls.email.hasError('email')">请输入正确的邮箱格式！</div>
             </div>
           </div>
           <div nz-form-item>
@@ -22,6 +23,8 @@
                 </ng-template>
               </nz-input>
               <div nz-form-explain *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('required')">请输入密码！</div>
+              <div nz-form-explain *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('minlength')">密码长度为6-16位！</div>
+              <div nz-form-explain *ngIf="validateForm.controls.password.dirty&&validateForm.controls.password.hasError('maxlength')">密码长度为6-16位！</div>
             </div>
           </div>
           <div nz-form-item>
@@ -29,9 +32,8 @@
               <label nz-checkbox formControlName="remember">
                 <span>记住我</span>
               </label>
-              <a class="login-form-forgot" class="login-form-forgot">忘记密码？</a>
               <button type="submit" nz-button class="login-form-button" [nzType]="'primary'" [nzSize]="'large'">登录</button>
-              或者
+              还没有账号？
               <a [routerLink]="['/register']">立即注册！</a>
             </div>
           </div>

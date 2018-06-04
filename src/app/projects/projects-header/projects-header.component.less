@@ -2,6 +2,10 @@
   display: flex;
 }
 
+:host ::ng-deep .ant-popover-inner-content {
+  padding: 0;
+}
+
 .header {
   align-items: center;
   background: #f4f7ed;
@@ -25,6 +29,11 @@
 .list {
   & > p {
     cursor: pointer;
+    padding: 5px;
     width: 80px;
+    text-align: center;
+    &:hover {
+      background-color: #dcdbdb36;
+    }
   }
 }

@@ -6,6 +6,8 @@ const httpUrl = {
   register: `/user/register`,
   // 获取团队用户
   getUsers: `/user/get_team_users`,
+  changeUsername: '/user/change_username',
+  getUserInfo: '/user/get_user',
   // 获取团队项目
   getProjects: `/project/get_projects_by_team`,
   // 获取项目详情
@@ -24,7 +26,8 @@ const httpUrl = {
   // 新建任务列表
   createProjectList: '/project/create_project_list',
   // 新建任务检查项
-  addTask: '/project/create_item_detail'
+  addTask: '/project/create_item_detail',
+  myTasks: '/project/getMyTasks'
 };
 
 Object.keys(httpUrl).forEach((value) => {

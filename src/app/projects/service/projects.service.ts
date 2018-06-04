@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Users} from '../model/Users';
+import {Users, User} from '../model/Users';
 import {NewCard, NewCardResponse, NewProject, Project, ProjectDetail, ProjectItem, ProjectListItem} from '../model/Projects';
 import {httpUrl} from '../../http-url';
 import {NewListPostData, NewListResponse} from '../model/NewList';
 import {TaskDetail} from '../model/TaskDetail';
 import {TaskPostData, TaskResponse} from '../model/Task';
+import {MyTaskResponse} from '../model/MyTask';
 
 @Injectable()
 export class ProjectsService {
@@ -155,5 +156,28 @@ export class ProjectsService {
    */
   taskComplete(id: number): Observable<{ success: boolean; progress: number; }> {
     return this.http.get<{ success: boolean; progress: number; }>(`${httpUrl.itemTaskComplete}?item_detail_id=${id}`);
+  }
+
+  changeUsername(data: User): Observable<any> {
+    const postData = this.handlePostData(data);
+    return this.http.post(httpUrl.changeUsername, postData, this.httpOptions);
+  }
+
+  /**
+   * 获取用户信息
+   * @param {string} userId  用户id
+   * @returns {Observable<any>}
+   */
+  getUserInfo(userId: string): Observable<any> {
+    return this.http.get(`${httpUrl.getUserInfo}?user_id=${userId}`);
+  }
+
+  /**
+   * 获取用户拥有的任务
+   * @param {string} userId 用户id
+   * @returns {Observable<MyTaskResponse>} 服务器响应
+   */
+  getMyTasks(userId: string): Observable<MyTaskResponse> {
+    return this.http.get<MyTaskResponse>(`${httpUrl.myTasks}?userId=${userId}`);
   }
 }
