@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {NzModalService} from 'ng-zorro-antd';
-import {ProjectsService} from '../service/projects.service';
-import {Users} from '../model/Users';
+import { Component, OnInit } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd';
+import { ProjectsService } from '../service/projects.service';
+import { Users } from '../model/Users';
+import { DeleteMember } from '../model/DeleteMember';
 
 @Component({
   selector: 'app-members',
@@ -10,6 +11,7 @@ import {Users} from '../model/Users';
 })
 export class MembersComponent implements OnInit {
   public members: Users;
+  isAdministrator = false;
 
   constructor(private projectsService: ProjectsService, private confirmService: NzModalService) {
   }
@@ -18,12 +20,25 @@ export class MembersComponent implements OnInit {
     this.getUsers();
   }
 
+  /**
+   * 获取团队成员信息
+   */
   getUsers(): void {
     this.projectsService
       .getUsers(Number(sessionStorage.getItem('active_team')))
       .subscribe(response => {
         if (response.success) {
           this.members = response;
+          for (const user of this.members.user_list) {
+            if (user.user_id === Number.parseInt(sessionStorage.getItem('userId'))) {
+              if (user.permission === '0') {
+                this.isAdministrator = true;
+              }
+            }
+          }
+          this.members.user_list.sort((a, b) => {
+            return Number(a.permission) - Number(b.permission);
+          });
         } else {
           this.showConfirm(response.reason);
         }
@@ -37,5 +52,20 @@ export class MembersComponent implements OnInit {
       okText: '确认',
       cancelText: '取消',
     });
+  }
+
+  /**
+   * 删除团队用户
+   * @param {number} userId 用户id
+   */
+  deleteTeamUser(userId: number) {
+    const data: DeleteMember = {
+      teamId: sessionStorage.getItem('active_team'),
+      userId: userId.toString()
+    };
+    this.projectsService.deleteTeamUser(data)
+      .subscribe(res => {
+        console.log(res);
+      });
   }
 }

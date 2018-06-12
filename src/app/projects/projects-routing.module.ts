@@ -10,6 +10,7 @@ import {ProjectCollectionComponent} from './project-collection/project-collectio
 import {ProjectCardDetailComponent} from './project-card-detail/project-card-detail.component';
 import {UserCenterComponent} from './user-center/user-center.component';
 import {MyProjectsComponent} from './my-projects/my-projects.component';
+import {BurnoutFigureComponent} from './burnout-figure/burnout-figure.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
       {
         path: 'myProject/:userId',
         component: MyProjectsComponent
+      },
+      {
+        path: 'burnOutFigure/:projectId',
+        component: BurnoutFigureComponent
       }
     ]
   },

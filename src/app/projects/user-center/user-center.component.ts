@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProjectsService} from '../service/projects.service';
 import {User} from '../model/Users';
 import {ActivatedRoute} from '@angular/router';
+import {ChangePhoneNumberPostData} from '../model/ChangePhoneNumber';
 
 @Component({
   selector: 'app-user-center',
@@ -9,10 +10,13 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./user-center.component.less']
 })
 export class UserCenterComponent implements OnInit {
-  public username = '刘浪';
-  public user_id: string;
+  username = '刘浪';
   email = '809721414@qq.com';
-  phoneNumber = '18328073611';
+  phoneNumber = '';
+  password = '';
+  isVisible = false;
+  user_id: string;
+  postData: ChangePhoneNumberPostData;
   public user: User = {
     avatar: null, username: null, user_id: null, phone_number: null, email: null
   };
@@ -40,4 +44,23 @@ export class UserCenterComponent implements OnInit {
       });
   }
 
+  handleOk() {
+    this.postData = {
+      userId: Number(this.user_id),
+      password: this.password,
+      phoneNumber: this.phoneNumber
+    };
+    this.projectsService.changePhoneNumber(this.postData).subscribe(response => {
+      if (response.success) {
+        this.user = response.user;
+      } else {
+        console.log(response.reason);
+      }
+    });
+    this.isVisible = false;
+  }
+
+  handleCancel() {
+    this.isVisible = false;
+  }
 }

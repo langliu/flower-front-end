@@ -14,5 +14,4 @@ export class DataFilterPipe implements PipeTransform {
     }
     return role;
   }
-
 }

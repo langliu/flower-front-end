@@ -8,6 +8,8 @@ const httpUrl = {
   getUsers: `/user/get_team_users`,
   changeUsername: '/user/change_username',
   getUserInfo: '/user/get_user',
+  deleteUser: '/user/deleteUser',
+  changePhoneNumber: '/user/changePhoneNumber',
   // 获取团队项目
   getProjects: `/project/get_projects_by_team`,
   // 获取项目详情

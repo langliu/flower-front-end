@@ -20,7 +20,7 @@
         </div>
         <div nz-col [nzSpan]="10" class="item">
           <input nz-input nzSize="large" class="disabled-input" placeholder="用户名" disabled [(ngModel)]="email">
-          <p class="change"><span>修改邮箱</span></p>
+          <!--<p class="change"><span>修改邮箱</span></p>-->
         </div>
       </div>
       <div nz-row nzType="flex" nzAlign="center" nzJustify="start" class="list-item">
@@ -28,8 +28,16 @@
           <p class="input-label">手机</p>
         </div>
         <div nz-col [nzSpan]="10" class="item">
-          <input nz-input nzSize="large" class="disabled-input" placeholder="用户名" disabled [(ngModel)]="phoneNumber">
-          <p class="change"><span>修改手机号</span></p>
+          <input nz-input nzSize="large" class="disabled-input" placeholder="用户名" disabled
+                 [(ngModel)]="user.phone_number">
+          <p class="change" (click)="isVisible=true"><span>修改手机号</span></p>
+          <nz-modal [(nzVisible)]="isVisible" [nzContent]="modalContent" nzTitle="修改手机号" (nzOnCancel)="handleCancel()"
+                    (nzOnOk)="handleOk()">
+            <ng-template #modalContent>
+              <nz-input [(ngModel)]="phoneNumber" nzPlaceHolder="请输入修改后的手机号"></nz-input>
+              <nz-input [(ngModel)]="password" nzPlaceHolder="请输入登录密码" style="margin-top: 20px;"></nz-input>
+            </ng-template>
+          </nz-modal>
         </div>
       </div>
       <div nz-row nzType="flex" nzAlign="center" nzJustify="start" class="list-item">

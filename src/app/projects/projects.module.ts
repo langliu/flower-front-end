@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
+import { NgxEchartsModule } from 'ngx-echarts';
 import {ProjectsRoutingModule} from './projects-routing.module';
 
 import {ProjectsService} from './service/projects.service';
@@ -18,6 +19,7 @@ import {ProjectCardDetailComponent} from './project-card-detail/project-card-det
 import {DataFilterPipe} from '../pipe/data-filter.pipe';
 import { UserCenterComponent } from './user-center/user-center.component';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
+import { BurnoutFigureComponent } from './burnout-figure/burnout-figure.component';
 
 @NgModule({
   imports: [
@@ -25,6 +27,7 @@ import { MyProjectsComponent } from './my-projects/my-projects.component';
     FormsModule,
     NgZorroAntdModule,
     ProjectsRoutingModule,
+    NgxEchartsModule
   ],
   declarations: [
     ProjectListComponent,
@@ -37,7 +40,8 @@ import { MyProjectsComponent } from './my-projects/my-projects.component';
     ProjectCardDetailComponent,
     DataFilterPipe,
     UserCenterComponent,
-    MyProjectsComponent
+    MyProjectsComponent,
+    BurnoutFigureComponent
   ],
   providers: [ProjectsService, AuthGuard]
 })

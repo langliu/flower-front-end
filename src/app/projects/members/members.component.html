@@ -7,9 +7,13 @@
     <div class="members-list_user" *ngFor="let user of members?.user_list">
       <div class="user">
         <nz-avatar nzSize="large" nzIcon="user"></nz-avatar>
-        <p class="user-name">{{user.username}}<span class="role">{{user.permission | dataFilter}}</span></p>
+        <p class="user-name">{{user.username}}
+          <span class="role">{{user.permission | dataFilter}}</span>
+        </p>
       </div>
-      <p class="user-email">{{user.email}}</p>
+      <p class="user-email">{{user.email}}
+        <button nz-button nzType="danger" *ngIf="user.permission === '2' && isAdministrator" (click)="deleteTeamUser(user.user_id)">删除</button>
+      </p>
     </div>
   </div>
 </div>

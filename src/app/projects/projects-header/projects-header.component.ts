@@ -16,10 +16,10 @@ export class ProjectsHeaderComponent implements OnInit {
       name: '团队',
       url: '/projects/members'
     },
-    {
-      name: '日历',
-      url: '/projects/calendars'
-    },
+    // {
+    //   name: '日历',
+    //   url: '/projects/calendars'
+    // },
     {
       name: '我的',
       url: `/projects/myProject/${sessionStorage.getItem('userId')}`

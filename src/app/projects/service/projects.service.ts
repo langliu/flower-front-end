@@ -8,6 +8,8 @@ import {NewListPostData, NewListResponse} from '../model/NewList';
 import {TaskDetail} from '../model/TaskDetail';
 import {TaskPostData, TaskResponse} from '../model/Task';
 import {MyTaskResponse} from '../model/MyTask';
+import {DeleteMember} from '../model/DeleteMember';
+import {ChangePhoneNumberPostData, ChangePhoneNumberResponse} from '../model/ChangePhoneNumber';
 
 @Injectable()
 export class ProjectsService {
@@ -179,5 +181,25 @@ export class ProjectsService {
    */
   getMyTasks(userId: string): Observable<MyTaskResponse> {
     return this.http.get<MyTaskResponse>(`${httpUrl.myTasks}?userId=${userId}`);
+  }
+
+  /**
+   * 删除团队成员
+   * @param {DeleteMember} data 用户数据
+   * @returns {Observable<any>}
+   */
+  deleteTeamUser(data: DeleteMember): Observable<any> {
+    const postData = this.handlePostData(data);
+    return this.http.post(httpUrl.deleteUser, postData, this.httpOptions);
+  }
+
+  /**
+   * 修改用户手机号
+   * @param {ChangePhoneNumberPostData} data 表单数据
+   * @returns {Observable<ChangePhoneNumberResponse>} 响应数据
+   */
+  changePhoneNumber(data: ChangePhoneNumberPostData): Observable<ChangePhoneNumberResponse> {
+    const postData = this.handlePostData(data);
+    return this.http.post<ChangePhoneNumberResponse>(httpUrl.changePhoneNumber, postData, this.httpOptions);
   }
 }
