@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectsService} from '../service/projects.service';
-import {httpUrl} from '../../http-url';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -10,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class BurnoutFigureComponent implements OnInit {
   options: any;
-  data: Array;
+  data = [];
 
   constructor(private projectsService: ProjectsService, private route: ActivatedRoute) {
   }
