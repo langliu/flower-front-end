@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {ProjectsService} from '../service/projects.service';
+import {httpUrl} from '../../http-url';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-burnout-figure',
@@ -7,56 +10,60 @@ import {Component, OnInit} from '@angular/core';
 })
 export class BurnoutFigureComponent implements OnInit {
   options: any;
+  data: Array;
 
-  constructor() {
+  constructor(private projectsService: ProjectsService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.options = {
-      tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b}: {c} ({d}%)'
-      },
-      legend: {
-        orient: 'vertical',
-        x: 'left',
-        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
-      },
-      series: [
-        {
-          name: '访问来源',
-          type: 'pie',
-          radius: ['50%', '70%'],
-          avoidLabelOverlap: false,
-          label: {
-            normal: {
-              show: false,
-              position: 'center'
-            },
-            emphasis: {
-              show: true,
-              textStyle: {
-                fontSize: '30',
-                fontWeight: 'bold'
-              }
-            }
-          },
-          labelLine: {
-            normal: {
-              show: false
-            }
-          },
-          data: [
-            {value: 335, name: '直接访问'},
-            {value: 310, name: '邮件营销'},
-            {value: 234, name: '联盟广告'},
-            {value: 135, name: '视频广告'},
-            {value: 1548, name: '搜索引擎'}
-          ]
-        }
-      ]
-    };
-
+    this.getCompletionStatusData(this.route.snapshot.paramMap.get('projectId'));
   }
 
+  getCompletionStatusData(projectId: string): void {
+    this.projectsService.getCompletionStatusData(projectId).subscribe(res => {
+      this.data = res['data'];
+      const legendData = [];
+      this.data.forEach((data) => {
+        legendData.push(data.name);
+      });
+      this.options = {
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+          orient: 'vertical',
+          x: 'left',
+          data: legendData
+        },
+        series: [
+          {
+            name: '数量统计',
+            type: 'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+              normal: {
+                show: false,
+                position: 'center'
+              },
+              emphasis: {
+                show: true,
+                textStyle: {
+                  fontSize: '30',
+                  fontWeight: 'bold'
+                }
+              }
+            },
+            labelLine: {
+              normal: {
+                show: true
+              }
+            },
+            data: this.data
+          }
+        ]
+      };
+    });
+  }
 }

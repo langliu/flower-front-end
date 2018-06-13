@@ -6,9 +6,13 @@ const httpUrl = {
   register: `/user/register`,
   // 获取团队用户
   getUsers: `/user/get_team_users`,
+  // 改变用户名
   changeUsername: '/user/change_username',
+  // 获取用户个人信息
   getUserInfo: '/user/get_user',
+  // 删除团队成员
   deleteUser: '/user/deleteUser',
+  // 改变电话号码
   changePhoneNumber: '/user/changePhoneNumber',
   // 获取团队项目
   getProjects: `/project/get_projects_by_team`,
@@ -29,7 +33,10 @@ const httpUrl = {
   createProjectList: '/project/create_project_list',
   // 新建任务检查项
   addTask: '/project/create_item_detail',
-  myTasks: '/project/getMyTasks'
+  // 获取个人任务接口
+  myTasks: '/project/getMyTasks',
+  // 获取任务完成信息
+  getCompletionStatusData: '/project/getCompletionStatusData'
 };
 
 Object.keys(httpUrl).forEach((value) => {

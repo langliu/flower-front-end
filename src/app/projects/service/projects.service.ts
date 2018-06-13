@@ -202,4 +202,13 @@ export class ProjectsService {
     const postData = this.handlePostData(data);
     return this.http.post<ChangePhoneNumberResponse>(httpUrl.changePhoneNumber, postData, this.httpOptions);
   }
+
+  /**
+   * 获取项目完成数据
+   * @param {string} projectId 项目id
+   * @returns {Observable<any>}
+   */
+  getCompletionStatusData(projectId: string): Observable<any> {
+    return this.http.get(`${httpUrl.getCompletionStatusData}?projectId=${projectId}`);
+  }
 }
