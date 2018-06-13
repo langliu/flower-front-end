@@ -1,22 +1,22 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {NgZorroAntdModule} from 'ng-zorro-antd';
-import { NgxEchartsModule } from 'ngx-echarts';
-import {ProjectsRoutingModule} from './projects-routing.module';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { SharedModule } from '../shared/shared.module';
+import { ProjectsRoutingModule } from './projects-routing.module';
 
-import {ProjectsService} from './service/projects.service';
-import {AuthGuard} from './service/auth-guard.service';
+import { ProjectsService } from './service/projects.service';
+import { AuthGuard } from './service/auth-guard.service';
 
-import {ProjectListComponent} from './project-list/project-list.component';
-import {ProjectCardComponent} from './project-card/project-card.component';
-import {MembersComponent} from './members/members.component';
-import {ProjectsComponent} from './projects/projects.component';
-import {ProjectsHeaderComponent} from './projects-header/projects-header.component';
-import {CalendarsComponent} from './calendars/calendars.component';
-import {ProjectCollectionComponent} from './project-collection/project-collection.component';
-import {ProjectCardDetailComponent} from './project-card-detail/project-card-detail.component';
-import {DataFilterPipe} from '../pipe/data-filter.pipe';
+import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectCardComponent } from './project-card/project-card.component';
+import { MembersComponent } from './members/members.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ProjectsHeaderComponent } from './projects-header/projects-header.component';
+import { CalendarsComponent } from './calendars/calendars.component';
+import { ProjectCollectionComponent } from './project-collection/project-collection.component';
+import { ProjectCardDetailComponent } from './project-card-detail/project-card-detail.component';
+import { DataFilterPipe } from '../pipe/data-filter.pipe';
 import { UserCenterComponent } from './user-center/user-center.component';
 import { MyProjectsComponent } from './my-projects/my-projects.component';
 import { BurnoutFigureComponent } from './burnout-figure/burnout-figure.component';
@@ -27,7 +27,7 @@ import { BurnoutFigureComponent } from './burnout-figure/burnout-figure.componen
     FormsModule,
     NgZorroAntdModule,
     ProjectsRoutingModule,
-    NgxEchartsModule
+    SharedModule
   ],
   declarations: [
     ProjectListComponent,

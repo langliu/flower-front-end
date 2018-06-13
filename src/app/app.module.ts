@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
-// import { NgxEchartsModule } from 'ngx-echarts';
 import { AppRoutingModule } from './app-routing.module';
 import { ProjectsModule } from './projects/projects.module';
 
@@ -24,7 +23,6 @@ import { LogInRegisterService } from './log-in-register.service';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    // NgxEchartsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     NgZorroAntdModule.forRoot(),
