@@ -26,23 +26,17 @@
     <p><i class="anticon anticon-plus"></i>添加新的清单</p>
   </div>
   <nz-modal [(nzVisible)]="isVisible"
-            nzTitle="新建任务"
-            [nzContent]="modalContent"
+            [nzTitle]="'新建任务'"
+            [nzOkLoading]="isOkLoading"
             (nzOnCancel)="handleCancel()"
-            (nzOnOk)="handleOk()"
-            [nzConfirmLoading]="isOkLoading">
-    <ng-template #modalContent>
-      <nz-input [(ngModel)]="postData.title" [nzPlaceHolder]="'任务描述'"></nz-input>
-    </ng-template>
+            (nzOnOk)="handleOk()">
+    <input nz-input [(ngModel)]="postData.title" placeholder="任务描述">
   </nz-modal>
   <nz-modal [(nzVisible)]="addNewListisVisible"
-            nzTitle="新建列表"
-            [nzContent]="modalContent2"
+            [nzTitle]="'新建列表'"
+            [nzOkLoading]="isOkLoading"
             (nzOnCancel)="handleCancel()"
-            (nzOnOk)="handleNewListOk()"
-            [nzConfirmLoading]="isOkLoading">
-    <ng-template #modalContent2>
-      <nz-input [(ngModel)]="newListData.list_name" [nzPlaceHolder]="'列表名称'"></nz-input>
-    </ng-template>
+            (nzOnOk)="handleNewListOk()">
+    <input nz-input [(ngModel)]="newListData.list_name" placeholder="列表名称">
   </nz-modal>
 </div>

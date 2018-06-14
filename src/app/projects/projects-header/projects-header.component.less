@@ -2,19 +2,17 @@
   display: flex;
 }
 
-:host ::ng-deep .ant-popover-inner-content {
-  padding: 0;
-}
-
 .header {
   align-items: center;
   background: #f4f7ed;
   display: flex;
   justify-content: space-between;
   height: 8vh;
+  position: relative;
 }
 
 .navigation-bar {
+  padding-left: 0;
   li {
     cursor: pointer;
     display: inline-block;
@@ -36,4 +34,10 @@
       background-color: #dcdbdb36;
     }
   }
+}
+
+.avatar {
+  background-color: #87d068;
+  position: absolute;
+  right: 0;
 }

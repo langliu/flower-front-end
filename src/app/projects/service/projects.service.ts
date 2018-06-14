@@ -146,7 +146,6 @@ export class ProjectsService {
    * @returns {Observable<any>}
    */
   updateCard(data: ProjectListItem): Observable<any> {
-    console.log('update');
     const postData = this.handlePostData(data);
     return this.http.post(httpUrl.updateItem, postData, this.httpOptions);
   }

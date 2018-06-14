@@ -4,37 +4,42 @@
     </label>
     {{title}}
   </p>
-  <nz-popover [nzTrigger]="'click'" [nzPlacement]="'right'" (click)="showPopover()">
-    <div class="card-footer"
-         [ngClass]="{'assigned':item.username && item.deadline,'delay':item.deadline&&(item.deadline<currentTime)}"
-         nz-popover>
-      <p *ngIf="item.username" style="margin-right: 5px;">{{item.username}}</p>
-      <p *ngIf="item.deadline">
-        {{item.deadline | date:'yyyy-MM-dd'}}
-      </p>
-      <p *ngIf="item.username==null && item.deadline===null">未指派</p>
+  <div class="card-footer"
+       [ngClass]="{'assigned':item.username && item.deadline,'delay':item.deadline&&(item.deadline<currentTime)}"
+       nz-popover
+       (click)="showPopover()"
+       [nzTrigger]="'click'"
+       [nzContent]="nzTemplate"
+       [nzPlacement]="'right'">
+    <p *ngIf="item.username" style="margin-right: 5px;">{{item.username}}</p>
+    <p *ngIf="item.deadline">
+      {{item.deadline | date:'yyyy-MM-dd'}}
+    </p>
+    <p *ngIf="item.username==null && item.deadline===null">未指派</p>
+  </div>
+  <ng-template #nzTemplate>
+    <div>
+      <p class="title">将任务指派给</p>
+      <nz-input-group [nzSize]="'small'">
+        <nz-select style="width: 100%;"
+                   [(ngModel)]="item.username" [nzPlaceHolder]="'请输入成员姓名'">
+          <nz-option *ngFor="let user of users?.user_list"
+                     [nzLabel]="user.username"
+                     [nzValue]="user.username">
+          </nz-option>
+          <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+          <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+          <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+        </nz-select>
+      </nz-input-group>
     </div>
-    <ng-template #nzTemplate>
-      <div>
-        <p class="title">将任务指派给</p>
-        <nz-input-group [nzSize]="'small'">
-          <nz-select style="width: 100%;"
-                     [(ngModel)]="item.username" [nzPlaceHolder]="'请输入成员姓名'" nzShowSearch>
-            <nz-option *ngFor="let user of users?.user_list"
-                       [nzLabel]="user.username"
-                       [nzValue]="user.username">
-            </nz-option>
-          </nz-select>
-        </nz-input-group>
-      </div>
-      <div>
-        <p class="title"> 任务截至时间</p>
-        <nz-input-group [nzSize]="'small'">
-          <nz-datepicker [(ngModel)]="deadline"
-                         (ngModelChange)="dateChange()">
-          </nz-datepicker>
-        </nz-input-group>
-      </div>
-    </ng-template>
-  </nz-popover>
+    <div>
+      <p class="title">任务截至时间</p>
+      <nz-input-group [nzSize]="'small'">
+        <nz-date-picker [(ngModel)]="deadline"
+                        (ngModelChange)="dateChange()">
+        </nz-date-picker>
+      </nz-input-group>
+    </div>
+  </ng-template>
 </div>

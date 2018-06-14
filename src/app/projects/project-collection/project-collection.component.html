@@ -4,11 +4,12 @@
       <p class="all-projects">全部项目</p>
       <div class="add-projects" (click)="showModal()"><i class="anticon anticon-plus-circle-o"></i>新增项目</div>
     </div>
-    <nz-modal [nzVisible]="isVisible" [nzTitle]="'新增项目'" [nzContent]="modalContent"
-              (nzOnCancel)="handleCancel($event)" (nzOnOk)="handleOk($event)" [nzConfirmLoading]="isConfirmLoading">
-      <ng-template #modalContent>
-        <nz-input [(ngModel)]="project_name" [nzPlaceHolder]="'请输入项目名称'"></nz-input>
-      </ng-template>
+    <nz-modal [nzVisible]="isVisible"
+              [nzTitle]="'新增项目'"
+              [nzOkLoading]="isConfirmLoading"
+              (nzOnCancel)="handleCancel($event)"
+              (nzOnOk)="handleOk($event)">
+      <input nz-input [(ngModel)]="project_name" placeholder="请输入项目名称">
     </nz-modal>
     <div nz-row [nzGutter]="32">
       <div nz-col [nzSpan]="6" *ngFor="let project of projects?.projects; index as i" class="project">

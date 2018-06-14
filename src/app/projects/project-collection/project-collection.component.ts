@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {ProjectsService} from '../service/projects.service';
-import {NzModalService} from 'ng-zorro-antd';
-import {Project} from '../model/Projects';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ProjectsService } from '../service/projects.service';
+import { NzModalService } from 'ng-zorro-antd';
+import { Project } from '../model/Projects';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project-collection',
@@ -39,7 +39,7 @@ export class ProjectCollectionComponent implements OnInit {
 
   constructor(
     private projectsService: ProjectsService,
-    private confirmServ: NzModalService,
+    private modalService: NzModalService,
     private router: Router) {
   }
 
@@ -60,11 +60,11 @@ export class ProjectCollectionComponent implements OnInit {
   }
 
   showConfirm(reason) {
-    this.confirmServ.error({
-      title: '错误',
-      content: `${reason}，重新登录？`,
-      okText: '确认',
-      cancelText: '取消',
+    this.modalService.error({
+      nzTitle: '错误',
+      nzContent: `${reason}，重新登录？`,
+      nzOkText: '确认',
+      nzCancelText: '取消',
     });
   }
 

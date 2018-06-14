@@ -24,9 +24,8 @@
   </div>
   <div nz-col [nzSpan]="20" [nzPush]="2">
     <div *ngIf="textareaDisable">
-      <nz-input [(ngModel)]="cardData?.item.description" [nzType]="'textarea'"
-                [nzRows]="'4'"
-                style="margin-bottom: 10px;"></nz-input>
+      <textarea row="4" nz-input [(ngModel)]="cardData?.item.description"
+                style="margin-bottom: 10px;"></textarea>
       <button nz-button [nzType]="'primary'" style="margin-right: 20px;" (click)="updateCard()">
         <span>确定</span>
       </button>
@@ -42,7 +41,7 @@
       </label>
     </p>
     <p *ngIf="showTaskItem">
-      <nz-input [(ngModel)]="taskData.value" style="margin-bottom: 10px;"></nz-input>
+      <input nz-input [(ngModel)]="taskData.value" style="margin-bottom: 10px;" title="" (keyup.enter)="addNewTask()">
       <button nz-button [nzType]="'primary'" style="margin-right: 20px;" (click)="addNewTask()">
         <span>确定</span>
       </button>

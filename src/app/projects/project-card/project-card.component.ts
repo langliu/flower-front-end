@@ -1,8 +1,8 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {ProjectsService} from '../service/projects.service';
-import {ProjectListItem} from '../model/Projects';
-import {Users} from '../model/Users';
-import {NzModalService} from 'ng-zorro-antd';
+import { Component, OnInit, Input } from '@angular/core';
+import { ProjectsService } from '../service/projects.service';
+import { ProjectListItem } from '../model/Projects';
+import { Users } from '../model/Users';
+import { NzModalService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-project-card',
@@ -21,7 +21,7 @@ export class ProjectCardComponent implements OnInit {
   public users: Users;
   public currentTime: string;
 
-  constructor(private projectsService: ProjectsService, private confirmService: NzModalService) {
+  constructor(private projectsService: ProjectsService, private modalService: NzModalService) {
   }
 
   ngOnInit() {
@@ -46,6 +46,7 @@ export class ProjectCardComponent implements OnInit {
       .subscribe(response => {
         if (response.success) {
           this.users = response;
+          console.log(this.users);
         } else {
           this.showConfirm(response.reason);
         }
@@ -53,11 +54,11 @@ export class ProjectCardComponent implements OnInit {
   }
 
   showConfirm(reason): void {
-    this.confirmService.error({
-      title: '错误',
-      content: `${reason}，重新登录？`,
-      okText: '确认',
-      cancelText: '取消',
+    this.modalService.error({
+      nzTitle: '错误',
+      nzContent: `${reason}，重新登录？`,
+      nzOkText: '确认',
+      nzCancelText: '取消',
     });
   }
 
@@ -80,8 +81,7 @@ export class ProjectCardComponent implements OnInit {
   dateChange(): void {
     // 格式化时间
     this.item.deadline = this.formatDate(new Date(this.deadline));
-    console.log(this.item);
-    this.projectsService.updateCard(this.item)
+    this.projectsService.updateCard({list_item_id: this.item.list_item_id, deadline: this.item.deadline})
       .subscribe(response => {
         console.log(response);
       });

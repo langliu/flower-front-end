@@ -6,15 +6,19 @@
       {{nav.name}}
     </li>
   </ul>
+  <nz-avatar
+    nz-popover
+    [nzContent]="nzTemplate"
+    [nzTrigger]="'click'"
+    [nzPlacement]="'bottom'"
+    [nzIcon]="'anticon anticon-user'"
+    class="avatar">
+  </nz-avatar>
+  <ng-template #nzTemplate>
+    <div class="list">
+      <p (click)="goToUserCenter()">个人中心</p>
+      <p (click)="signOut()">退出</p>
+    </div>
+  </ng-template>
 
-  <nz-popover [nzTrigger]="'click'" [nzPlacement]="'bottom'">
-    <!--<button nz-button nz-popover>点击</button>-->
-    <nz-avatar nz-popover nzIcon="user" style="background-color: #87d068;"></nz-avatar>
-    <ng-template #nzTemplate>
-      <div class="list">
-        <p (click)="goToUserCenter()">个人中心</p>
-        <p (click)="signOut()">退出</p>
-      </div>
-    </ng-template>
-  </nz-popover>
 </div>

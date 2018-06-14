@@ -34,8 +34,8 @@
           <nz-modal [(nzVisible)]="isVisible" [nzContent]="modalContent" nzTitle="修改手机号" (nzOnCancel)="handleCancel()"
                     (nzOnOk)="handleOk()">
             <ng-template #modalContent>
-              <nz-input [(ngModel)]="phoneNumber" nzPlaceHolder="请输入修改后的手机号"></nz-input>
-              <nz-input [(ngModel)]="password" nzPlaceHolder="请输入登录密码" style="margin-top: 20px;"></nz-input>
+              <input nz-input [(ngModel)]="phoneNumber" placeholder="请输入修改后的手机号">
+              <input nz-input [(ngModel)]="password" placeholder="请输入登录密码" style="margin-top: 20px;">
             </ng-template>
           </nz-modal>
         </div>

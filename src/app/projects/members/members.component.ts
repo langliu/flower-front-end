@@ -13,7 +13,7 @@ export class MembersComponent implements OnInit {
   public members: Users;
   isAdministrator = false;
 
-  constructor(private projectsService: ProjectsService, private confirmService: NzModalService) {
+  constructor(private projectsService: ProjectsService, private modalService: NzModalService) {
   }
 
   ngOnInit() {
@@ -46,11 +46,11 @@ export class MembersComponent implements OnInit {
   }
 
   showConfirm(reason): void {
-    this.confirmService.error({
-      title: '错误',
-      content: `${reason}，重新登录？`,
-      okText: '确认',
-      cancelText: '取消',
+    this.modalService.error({
+      nzTitle: '错误',
+      nzContent: `${reason}，重新登录？`,
+      nzOkText: '确认',
+      nzCancelText: '取消',
     });
   }
 
